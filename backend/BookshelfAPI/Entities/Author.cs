@@ -1,9 +1,9 @@
-﻿using AuthorsWebAPI.Validations;
+﻿using Bookshelf.Validations;
 using Microsoft.AspNetCore.Components.Forms;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace AuthorsWebAPI.Entities
+namespace Bookshelf.Entities
 {
     public class Author
     {

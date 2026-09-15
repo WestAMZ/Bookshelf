@@ -1,7 +1,7 @@
-﻿using AuthorsWebAPI.DTOs;
-using AuthorsWebAPI.Entities;
-using AuthorsWebAPI.Filters;
-using AuthorsWebAPI.Migrations;
+﻿using Bookshelf.DTOs;
+using Bookshelf.Entities;
+using Bookshelf.Filters;
+using Bookshelf.Migrations;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthorsWebAPI.Controllers
+namespace Bookshelf.Controllers
 {
     [Route("api/author")]
     [ApiController]

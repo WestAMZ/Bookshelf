@@ -1,4 +1,4 @@
-﻿namespace AuthorsWebAPI.DTOs
+﻿namespace Bookshelf.DTOs
 {
     public class BookDTO
     {

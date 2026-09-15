@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace AuthorsWebAPI.Entities
+namespace Bookshelf.Entities
 {
     public class Comment
     {

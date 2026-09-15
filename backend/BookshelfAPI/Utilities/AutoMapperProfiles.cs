@@ -1,8 +1,8 @@
-﻿using AuthorsWebAPI.DTOs;
-using AuthorsWebAPI.Entities;
+﻿using Bookshelf.DTOs;
+using Bookshelf.Entities;
 using AutoMapper;
 
-namespace AuthorsWebAPI.Utilities
+namespace Bookshelf.Utilities
 {
     public class AutoMapperProfiles: Profile
     {

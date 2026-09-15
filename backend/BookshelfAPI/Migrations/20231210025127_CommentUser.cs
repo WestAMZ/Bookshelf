@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace AuthorsWebAPI.Migrations
+namespace Bookshelf.Migrations
 {
     /// <inheritdoc />
     public partial class CommentUser : Migration

@@ -1,15 +1,16 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { Link } from 'react-router';
+import { IMAGES_URL } from '../../const/global';
 import { searchBooks } from '../../services/BooksService';
 import { getGenres } from '../../services/GenreService';
 import type { BookDTOWithAuthors } from '../../types/BooksTypes';
 
-const getBookImageUrl = (imageUrl?: string | null) => {
-  if (!imageUrl) {
+const getBookImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
     return 'https://via.placeholder.com/240x320?text=No+Image';
   }
 
-  return `https://localhost:7038/images/books/${imageUrl}`;
+  return `${IMAGES_URL}${imagePath}`;
 };
 
 export const BooksPage = () => {

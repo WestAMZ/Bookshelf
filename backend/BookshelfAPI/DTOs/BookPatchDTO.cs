@@ -1,7 +1,7 @@
-﻿using AuthorsWebAPI.Validations;
+﻿using Bookshelf.Validations;
 using System.ComponentModel.DataAnnotations;
 
-namespace AuthorsWebAPI.DTOs
+namespace Bookshelf.DTOs
 {
     public class BookPatchDTO
     {

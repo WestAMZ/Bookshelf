@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthorsWebAPI.DTOs
+namespace Bookshelf.DTOs
 {
     public class AdminEditDTO
     {

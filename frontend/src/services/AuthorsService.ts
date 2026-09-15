@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../const/global';
+import { API_URL } from '../const/global.ts';
 import type { AuthorCreateDTO, AuthorDTO, AuthorDTOWithBooks } from '../types/AuthorsTypes';
 
 const api = axios.create({

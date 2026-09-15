@@ -1,6 +1,6 @@
-using AuthorsWebAPI;
-using AuthorsWebAPI.Filters;
-using AuthorsWebAPI.Middlewares;
+using Bookshelf;
+using Bookshelf.Filters;
+using Bookshelf.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

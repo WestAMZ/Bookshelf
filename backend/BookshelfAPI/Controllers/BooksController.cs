@@ -1,6 +1,6 @@
-﻿using AuthorsWebAPI.DTOs;
-using AuthorsWebAPI.Entities;
-using AuthorsWebAPI.Migrations;
+﻿using Bookshelf.DTOs;
+using Bookshelf.Entities;
+using Bookshelf.Migrations;
 using AutoMapper;
 using Azure;
 using Microsoft.AspNetCore.JsonPatch;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace AuthorsWebAPI.Controllers
+namespace Bookshelf.Controllers
 {
     [ApiController]
     [Route("api/book")]
@@ -74,7 +74,8 @@ namespace AuthorsWebAPI.Controllers
             }
 
             var books = await query.ToListAsync();
-            return mapper.Map<List<BookDTOWithAuthors>>(books);
+            var result = mapper.Map<List<BookDTOWithAuthors>>(books);
+            return result;
         }
         [HttpPost]
         public async Task<ActionResult> Post(BookCreateDTO bookCreateDTO)

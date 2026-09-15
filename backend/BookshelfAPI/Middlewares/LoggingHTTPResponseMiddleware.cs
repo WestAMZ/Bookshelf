@@ -1,4 +1,4 @@
-﻿namespace AuthorsWebAPI.Middlewares
+﻿namespace Bookshelf.Middlewares
 {
     public static class LoggingHTTPResponseMiddlewareExtensions 
     {

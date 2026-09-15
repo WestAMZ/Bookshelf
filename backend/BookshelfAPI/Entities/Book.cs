@@ -1,7 +1,7 @@
-﻿using AuthorsWebAPI.Validations;
+﻿using Bookshelf.Validations;
 using System.ComponentModel.DataAnnotations;
 
-namespace AuthorsWebAPI.Entities
+namespace Bookshelf.Entities
 {
     public class Book
     {

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
+import { IMAGES_URL } from '../../const/global';
 import { getBookById } from '../../services/BooksService';
 import type { BookDTOWithAuthors } from '../../types/BooksTypes';
 
-const getBookImageUrl = (imageUrl?: string | null) => {
-  if (!imageUrl) {
+const getBookImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
     return 'https://via.placeholder.com/240x320?text=No+Image';
   }
 
-  return `https://localhost:7038/images/books/${imageUrl}`;
+  return `${IMAGES_URL}${imagePath}`;
 };
 
 export const BookDetailPage = () => {

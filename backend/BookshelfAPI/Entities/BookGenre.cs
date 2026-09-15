@@ -1,4 +1,4 @@
-namespace AuthorsWebAPI.Entities
+namespace Bookshelf.Entities
 {
     public class BookGenre
     {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { UserCredentials, AuthenticationResponse } from '../types/AccountTypes';
-import { API_URL } from '../const/global';
+import { API_URL } from '../const/global.ts';
 
 const api = axios.create({
     baseURL: API_URL,

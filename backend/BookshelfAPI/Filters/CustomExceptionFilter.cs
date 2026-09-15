@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AuthorsWebAPI.Filters
+namespace Bookshelf.Filters
 {
     public class CustomExceptionFilter : ExceptionFilterAttribute
     {

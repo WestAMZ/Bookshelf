@@ -1,8 +1,8 @@
-﻿using AuthorsWebAPI.Entities;
+﻿using Bookshelf.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthorsWebAPI
+namespace Bookshelf
 {
     public class ApplicationDbContext : IdentityDbContext
     {

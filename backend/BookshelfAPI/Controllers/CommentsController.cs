@@ -1,5 +1,5 @@
-﻿using AuthorsWebAPI.DTOs;
-using AuthorsWebAPI.Entities;
+﻿using Bookshelf.DTOs;
+using Bookshelf.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AuthorsWebAPI.Controllers
+namespace Bookshelf.Controllers
 {
     [ApiController]
     [Route("api/books/{bookId:int}/comments")]

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AuthorsWebAPI.Migrations
+namespace Bookshelf.Migrations
 {
     /// <inheritdoc />
     public partial class PublishedDate : Migration

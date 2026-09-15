@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AuthorsWebAPI.Validations
+namespace Bookshelf.Validations
 {
     public class FirstLetterCapitalAttribute: ValidationAttribute
     {
