@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
 import { IMAGES_URL } from '../../const/global';
 import { getBookById } from '../../services/BooksService';
-import type { BookDTOWithAuthors } from '../../types/BooksTypes';
+import type { BookDetailsDTO } from '../../types/BooksTypes';
+import { formatDate } from '../../utils/date';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
@@ -14,7 +15,7 @@ const getBookImageUrl = (imagePath?: string | null) => {
 
 export const BookDetailPage = () => {
   const { id } = useParams();
-  const [book, setBook] = useState<BookDTOWithAuthors | null>(null);
+  const [book, setBook] = useState<BookDetailsDTO | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -59,11 +60,11 @@ export const BookDetailPage = () => {
           />
           <div className="flex-1">
             <h1 className="text-3xl font-semibold text-slate-900">{book.title}</h1>
-            <p className="mt-2 text-sm text-slate-500">Published: {book.publishedDate}</p>
+            <p className="mt-2 text-sm text-slate-500">Published: {formatDate(book.publishedDate)}</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              {(book.genres?.length ? book.genres : ['No genres']).map((genre) => (
-                <span key={genre} className="rounded-full bg-cyan-50 px-2.5 py-1 text-xs font-medium text-cyan-700">
-                  {genre}
+              {(book.genres?.length ? book.genres : [{ id: 0, name: 'No genres' }]).map((genre) => (
+                <span key={genre.id} className="rounded-full bg-cyan-50 px-2.5 py-1 text-xs font-medium text-cyan-700">
+                  {genre.name}
                 </span>
               ))}
             </div>
@@ -76,7 +77,7 @@ export const BookDetailPage = () => {
             <ul className="mt-3 space-y-2">
               {book.authors.map((author) => (
                 <li key={author.id} className="rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                  {author.firstName} {author.lastName}
+                  {author.name}
                 </li>
               ))}
             </ul>

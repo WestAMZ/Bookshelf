@@ -25,11 +25,13 @@ namespace Bookshelf.Controllers
             this.mapper = mapper;
         }
         [HttpGet("{id:int}", Name = "GetBook")]
-        public async Task<ActionResult<BookDTOWithAuthors>> Get(int id)
+        public async Task<ActionResult<BookDetailsDTO>> Get(int id)
         {
             var book = await context.Books
                 .Include(bookDb => bookDb.AuthorBooks)
                 .ThenInclude(authorBooksDb => authorBooksDb.Author)
+            .Include(bookDb => bookDb.BookGenres)
+            .ThenInclude(bookGenresDb => bookGenresDb.Genre)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if (book == null) 
@@ -39,11 +41,11 @@ namespace Bookshelf.Controllers
 
             book.AuthorBooks = book.AuthorBooks.OrderBy(authorBook => authorBook.Order).ToList();
             
-            return mapper.Map<BookDTOWithAuthors>(book);
+            return mapper.Map<BookDetailsDTO>(book);
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<List<BookDTOWithAuthors>>> Search(
+        public async Task<ActionResult<List<BookDetailsDTO>>> Search(
             [FromQuery] string author, 
             [FromQuery] string title, 
             [FromQuery] DateTime? publishedDate, 
@@ -74,7 +76,7 @@ namespace Bookshelf.Controllers
             }
 
             var books = await query.ToListAsync();
-            var result = mapper.Map<List<BookDTOWithAuthors>>(books);
+            var result = mapper.Map<List<BookDetailsDTO>>(books);
             return result;
         }
         [HttpPost]

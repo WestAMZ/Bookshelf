@@ -70,8 +70,7 @@ export const AuthorsPage = () => {
               to={`/authors/${author.id}`}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <h2 className="text-lg font-semibold text-slate-900">{author.firstName} {author.lastName}</h2>
-              <p className="mt-2 text-sm text-slate-500">Birth date: {author.birthDate}</p>
+              <h2 className="text-lg font-semibold text-slate-900">{author.name}</h2>
               <p className="mt-3 text-sm text-cyan-600">View details →</p>
             </Link>
           ))}

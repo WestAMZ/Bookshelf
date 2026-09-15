@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import { IMAGES_URL } from '../../const/global';
 import { searchBooks } from '../../services/BooksService';
 import { getGenres } from '../../services/GenreService';
-import type { BookDTOWithAuthors } from '../../types/BooksTypes';
+import type { BookDetailsDTO } from '../../types/BooksTypes';
+import { formatDate } from '../../utils/date';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
@@ -14,7 +15,7 @@ const getBookImageUrl = (imagePath?: string | null) => {
 };
 
 export const BooksPage = () => {
-  const [books, setBooks] = useState<BookDTOWithAuthors[]>([]);
+  const [books, setBooks] = useState<BookDetailsDTO[]>([]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [genre, setGenre] = useState('');
@@ -135,14 +136,14 @@ export const BooksPage = () => {
                 className="mb-4 h-56 w-full rounded-xl object-cover"
               />
               <h2 className="text-lg font-semibold text-slate-900">{book.title}</h2>
-              <p className="mt-2 text-sm text-slate-500">Published: {book.publishedDate}</p>
+              <p className="mt-2 text-sm text-slate-500">Published: {formatDate(book.publishedDate)}</p>
               <p className="mt-2 text-sm text-slate-700">
-                Author: {book.authors?.length ? book.authors.map((author) => `${author.firstName} ${author.lastName}`.trim()).join(', ') : 'Unknown'}
+                Authors: {book.authors?.length ? book.authors.map((author) => author.name).join(', ') : 'Unknown'}
               </p>
               <div className="mt-2 flex flex-wrap gap-2">
-                {(book.genres?.length ? book.genres : ['No genres']).map((item) => (
-                  <span key={item} className="rounded-full bg-cyan-50 px-2.5 py-1 text-xs font-medium text-cyan-700">
-                    {item}
+                {(book.genres?.length ? book.genres : [{ id: 0, name: 'No genres' }]).map((item) => (
+                  <span key={item.id} className="rounded-full bg-cyan-50 px-2.5 py-1 text-xs font-medium text-cyan-700">
+                    {item.name}
                   </span>
                 ))}
               </div>

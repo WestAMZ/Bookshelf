@@ -14,11 +14,16 @@ export interface BookDTO {
     publishedDate: string;
 }
 
-export interface BookDTOWithAuthors {
+export interface GenreDTO {
+    id: number;
+    name: string;
+}
+
+export interface BookDetailsDTO {
     id: number;
     title: string;
     imageUrl?: string | null;
     publishedDate: string;
     authors: AuthorDTO[];
-    genres?: string[];
+    genres: GenreDTO[];
 }

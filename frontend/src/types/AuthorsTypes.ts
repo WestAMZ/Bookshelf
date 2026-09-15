@@ -1,22 +1,19 @@
 import type { BookDTO } from "./BooksTypes";
 
 export interface AuthorCreateDTO {
-    firstName: string;
-    lastName: string;
-    birthDate: string;
+    name: string;
+    imageUrl?: string | null;
 }
 
 export interface AuthorDTO {
     id: number;
-    firstName: string;
-    lastName: string;
-    birthDate: string;
+    name: string;
+    imageUrl?: string | null;
 }
 
 export interface AuthorDTOWithBooks {
     id: number;
-    firstName: string;
-    lastName: string;
-    birthDate: string;
+    name: string;
+    imageUrl?: string | null;
     books: BookDTO[];
 }

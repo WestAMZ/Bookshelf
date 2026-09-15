@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../const/global.ts';
-import type { BookCreateDTO, BookDTO, BookDTOWithAuthors } from '../types/BooksTypes';
+import type { BookCreateDTO, BookDetailsDTO, BookDTO } from '../types/BooksTypes';
 
 const api = axios.create({
     baseURL: API_URL,
@@ -46,7 +46,7 @@ api.interceptors.request.use((config) => {
 });
 
 export const getBookById = async (id: number) => {
-    const { data } = await api.get<BookDTOWithAuthors>(`book/${id}`);
+    const { data } = await api.get<BookDetailsDTO>(`book/${id}`);
     return data;
 };
 
@@ -71,6 +71,6 @@ export const deleteBook = async (id: number) => {
 };
 
 export const searchBooks = async (params?: Record<string, string | number | boolean | undefined>) => {
-    const { data } = await api.get<BookDTOWithAuthors[]>('book/search', { params });
+    const { data } = await api.get<BookDetailsDTO[]>('book/search', { params });
     return data;
 };

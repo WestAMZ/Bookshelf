@@ -15,11 +15,13 @@ namespace Bookshelf.Utilities
             CreateMap<BookCreateDTO, Book>()
                 .ForMember(book => book.AuthorBooks, options => options.MapFrom(MapAuthorBooks));
             CreateMap<Book, BookDTO>();
+            CreateMap<Genre, GenreDTO>();
 
             CreateMap<BookPatchDTO, Book>().ReverseMap();
 
-            CreateMap<Book, BookDTOWithAuthors>()
-                .ForMember(bookDTO => bookDTO.Authors, options => options.MapFrom(MapBookAuthorsDTO));
+            CreateMap<Book, BookDetailsDTO>()
+                .ForMember(bookDTO => bookDTO.Authors, options => options.MapFrom(MapBookAuthorsDTO))
+                .ForMember(bookDTO => bookDTO.Genres, options => options.MapFrom(MapBookGenresDTO));
             CreateMap<CommentCreateDTO,Comment>();
             CreateMap<Comment, CommentDTO>();
         }
@@ -40,7 +42,7 @@ namespace Bookshelf.Utilities
             return result;
         }
 
-        private List<AuthorDTO> MapBookAuthorsDTO(Book book, BookDTO bookDTO) 
+        private List<AuthorDTO> MapBookAuthorsDTO(Book book, BookDetailsDTO bookDTO) 
         {
             var result = new List<AuthorDTO>();
 
@@ -56,6 +58,22 @@ namespace Bookshelf.Utilities
                 });
             }
             return result;
+        }
+        private List<GenreDTO> MapBookGenresDTO(Book book, BookDetailsDTO bookDTO)
+        {
+            if (book.BookGenres == null)
+            {
+                return new List<GenreDTO>();
+            }
+
+            return book.BookGenres
+                .Where(bookGenre => bookGenre.Genre != null)
+                .Select(bookGenre => new GenreDTO
+                {
+                    Id = bookGenre.GenreId,
+                    Name = bookGenre.Genre.Name
+                })
+                .ToList();
         }
         private List<BookDTO> MapAuthorDTOBooks(Author author, AuthorDTO authorDTO)
         {

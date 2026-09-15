@@ -42,8 +42,7 @@ export const AuthorDetailPage = () => {
     <div className="mx-auto max-w-3xl px-6 py-8">
       <Link to="/authors" className="mb-6 inline-block text-sm font-medium text-cyan-600">← Back to authors</Link>
       <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-semibold text-slate-900">{author.firstName} {author.lastName}</h1>
-        <p className="mt-2 text-sm text-slate-500">Birth date: {author.birthDate}</p>
+        <h1 className="text-3xl font-semibold text-slate-900">{author.name}</h1>
 
         <div className="mt-6">
           <h2 className="text-lg font-semibold text-slate-900">Books</h2>
