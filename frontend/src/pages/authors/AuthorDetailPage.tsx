@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { AUTHORS_IMAGES_URL } from '../../const/global';
+import { AUTHORS_IMAGES_URL, IMAGES_URL } from '../../const/global';
 import { getAuthorById } from '../../services/AuthorsService';
 import type { AuthorDTOWithBooks } from '../../types/AuthorsTypes';
+import { formatDate } from '../../utils/date';
 
 const getAuthorImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
@@ -10,6 +11,14 @@ const getAuthorImageUrl = (imagePath?: string | null) => {
   }
 
   return `${AUTHORS_IMAGES_URL}${imagePath}`;
+};
+
+const getBookImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
+    return 'https://placehold.co/96x128?text=No+Image';
+  }
+
+  return `${IMAGES_URL}${imagePath}`;
 };
 
 export const AuthorDetailPage = () => {
@@ -65,8 +74,21 @@ export const AuthorDetailPage = () => {
           {author.books?.length ? (
             <ul className="mt-3 space-y-2">
               {author.books.map((book) => (
-                <li key={book.id} className="rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                  {book.title}
+                <li key={book.id}>
+                  <Link
+                    to={`/books/${book.id}`}
+                    className="flex items-center gap-4 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700 transition hover:bg-cyan-50 hover:text-cyan-700"
+                  >
+                    <img
+                      src={getBookImageUrl(book.imageUrl)}
+                      alt={book.title}
+                      className="h-16 w-12 shrink-0 rounded object-cover"
+                    />
+                    <div>
+                      <p className="font-medium">{book.title}</p>
+                      <p className="mt-1 text-xs text-slate-500">Published: {formatDate(book.publishedDate)}</p>
+                    </div>
+                  </Link>
                 </li>
               ))}
             </ul>
