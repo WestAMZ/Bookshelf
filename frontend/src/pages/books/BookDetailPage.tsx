@@ -4,10 +4,11 @@ import { IMAGES_URL } from '../../const/global';
 import { getBookById } from '../../services/BooksService';
 import type { BookDetailsDTO } from '../../types/BooksTypes';
 import { formatDate } from '../../utils/date';
+import { BOOK_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://via.placeholder.com/240x320?text=No+Image';
+    return BOOK_PLACEHOLDER_IMAGE;
   }
 
   return `${IMAGES_URL}${imagePath}`;
@@ -56,6 +57,7 @@ export const BookDetailPage = () => {
           <img
             src={getBookImageUrl(book.imageUrl)}
             alt={book.title}
+            onError={(event) => handleImageError(event, BOOK_PLACEHOLDER_IMAGE)}
             className="h-72 w-full rounded-2xl object-cover md:w-64"
           />
           <div className="flex-1">

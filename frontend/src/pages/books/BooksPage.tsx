@@ -6,10 +6,11 @@ import { searchBooks } from '../../services/BooksService';
 import { getGenres } from '../../services/GenreService';
 import type { BookDetailsDTO } from '../../types/BooksTypes';
 import { formatDate } from '../../utils/date';
+import { BOOK_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://placehold.co/240x320?text=No+Image';
+    return BOOK_PLACEHOLDER_IMAGE;
   }
 
   return `${IMAGES_URL}${imagePath}`;
@@ -174,6 +175,7 @@ export const BooksPage = () => {
               <img
                 src={getBookImageUrl(book.imageUrl)}
                 alt={book.title}
+                onError={(event) => handleImageError(event, BOOK_PLACEHOLDER_IMAGE)}
                 className="mb-4 h-56 w-full rounded-xl object-cover"
               />
               <h2 className="text-lg font-semibold text-slate-900">{book.title}</h2>

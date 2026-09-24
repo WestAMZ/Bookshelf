@@ -3,10 +3,11 @@ import { Link } from 'react-router';
 import { AUTHORS_IMAGES_URL } from '../../const/global';
 import { getAllAuthors, getAuthorByName } from '../../services/AuthorsService';
 import type { AuthorDTO } from '../../types/AuthorsTypes';
+import { AUTHOR_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
 
 const getAuthorImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://placehold.co/240x320?text=No+Image';
+    return AUTHOR_PLACEHOLDER_IMAGE;
   }
 
   return `${AUTHORS_IMAGES_URL}${imagePath}`;
@@ -82,6 +83,7 @@ export const AuthorsPage = () => {
               <img
                 src={getAuthorImageUrl(author.imageUrl)}
                 alt={author.name}
+                onError={(event) => handleImageError(event, AUTHOR_PLACEHOLDER_IMAGE)}
                 className="mb-4 h-56 w-full rounded-xl object-cover"
               />
               <h2 className="text-lg font-semibold text-slate-900">{author.name}</h2>

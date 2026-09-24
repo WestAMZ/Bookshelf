@@ -4,10 +4,11 @@ import { AUTHORS_IMAGES_URL, IMAGES_URL } from '../../const/global';
 import { getAuthorById } from '../../services/AuthorsService';
 import type { AuthorDTOWithBooks } from '../../types/AuthorsTypes';
 import { formatDate } from '../../utils/date';
+import { AUTHOR_PLACEHOLDER_IMAGE, BOOK_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
 
 const getAuthorImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://placehold.co/240x320?text=No+Image';
+    return AUTHOR_PLACEHOLDER_IMAGE;
   }
 
   return `${AUTHORS_IMAGES_URL}${imagePath}`;
@@ -15,7 +16,7 @@ const getAuthorImageUrl = (imagePath?: string | null) => {
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://placehold.co/96x128?text=No+Image';
+    return BOOK_PLACEHOLDER_IMAGE;
   }
 
   return `${IMAGES_URL}${imagePath}`;
@@ -64,6 +65,7 @@ export const AuthorDetailPage = () => {
           <img
             src={getAuthorImageUrl(author.imageUrl)}
             alt={author.name}
+            onError={(event) => handleImageError(event, AUTHOR_PLACEHOLDER_IMAGE)}
             className="h-48 w-36 rounded-xl object-cover"
           />
           <h1 className="text-3xl font-semibold text-slate-900">{author.name}</h1>
@@ -82,6 +84,7 @@ export const AuthorDetailPage = () => {
                     <img
                       src={getBookImageUrl(book.imageUrl)}
                       alt={book.title}
+                      onError={(event) => handleImageError(event, BOOK_PLACEHOLDER_IMAGE)}
                       className="h-16 w-12 shrink-0 rounded object-cover"
                     />
                     <div>
