@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { Link } from 'react-router';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { IMAGES_URL } from '../../const/global';
 import { searchBooks } from '../../services/BooksService';
 import { getGenres } from '../../services/GenreService';
@@ -18,8 +19,9 @@ export const BooksPage = () => {
   const [books, setBooks] = useState<BookDetailsDTO[]>([]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [genre, setGenre] = useState('');
-  const [publishedDate, setPublishedDate] = useState('');
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [genres, setGenres] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -61,8 +63,9 @@ export const BooksPage = () => {
     void loadBooks({
       title: title || undefined,
       author: author || undefined,
-      genre: genre || undefined,
-      publishedDate: publishedDate || undefined
+      genres: selectedGenres.length ? selectedGenres.join(',') : undefined,
+      startDate: startDate || undefined,
+      endDate: endDate || undefined
     });
   };
 
@@ -72,7 +75,7 @@ export const BooksPage = () => {
         <div className="mb-4 flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-slate-900">Books</h1>
-            <p className="mt-1 text-sm text-slate-500">Search books by title, author, genre or publication date.</p>
+            <p className="mt-1 text-sm text-slate-500">Search books by title, author, genre or publication date range.</p>
           </div>
         </div>
 
@@ -92,10 +95,10 @@ export const BooksPage = () => {
           <div className="flex flex-wrap items-center gap-2 md:col-span-2 xl:col-span-2" role="group" aria-label="Filter by genre">
             <button
               type="button"
-              aria-pressed={!genre}
-              onClick={() => setGenre('')}
+              aria-pressed={selectedGenres.length === 0}
+              onClick={() => setSelectedGenres([])}
               className={`rounded-full border px-3 py-2 text-sm font-medium transition ${
-                !genre
+                selectedGenres.length === 0
                   ? 'border-cyan-600 bg-cyan-600 text-white'
                   : 'border-slate-300 bg-white text-slate-700 hover:border-cyan-500 hover:text-cyan-700'
               }`}
@@ -103,14 +106,20 @@ export const BooksPage = () => {
               All genres
             </button>
             {genres.map((availableGenre) => {
-              const isSelected = genre === availableGenre;
+              const isSelected = selectedGenres.includes(availableGenre);
 
               return (
                 <button
                   key={availableGenre}
                   type="button"
                   aria-pressed={isSelected}
-                  onClick={() => setGenre(isSelected ? '' : availableGenre)}
+                  onClick={() =>
+                    setSelectedGenres((currentGenres) =>
+                      isSelected
+                        ? currentGenres.filter((selectedGenre) => selectedGenre !== availableGenre)
+                        : [...currentGenres, availableGenre]
+                    )
+                  }
                   className={`rounded-full border px-3 py-2 text-sm font-medium transition ${
                     isSelected
                       ? 'border-cyan-600 bg-cyan-600 text-white'
@@ -124,14 +133,25 @@ export const BooksPage = () => {
           </div>
           <input
             type="date"
-            value={publishedDate}
-            onChange={(event) => setPublishedDate(event.target.value)}
+            value={startDate}
+            onChange={(event) => setStartDate(event.target.value)}
+            aria-label="Published from"
+            title="Published from"
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-500"
+          />
+          <input
+            type="date"
+            value={endDate}
+            onChange={(event) => setEndDate(event.target.value)}
+            aria-label="Published to"
+            title="Published to"
             className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-500"
           />
           <button
             type="submit"
-            className="rounded-lg bg-cyan-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-cyan-500 md:col-span-2 xl:col-span-1"
+            className="flex items-center justify-center gap-2 rounded-lg bg-cyan-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-cyan-500 md:col-span-2 xl:col-span-1"
           >
+            <FaMagnifyingGlass aria-hidden="true" />
             Search
           </button>
         </form>

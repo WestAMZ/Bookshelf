@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { FaBook, FaBookOpen, FaHouse, FaPenNib } from "react-icons/fa6";
 
 export const Navbar = () => {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -14,22 +15,26 @@ export const Navbar = () => {
         {/* Logo */}
         <NavLink
           to="/"
-          className="text-xl font-bold text-blue-600"
+          className="flex items-center gap-2 text-xl font-bold text-blue-600"
         >
+          <FaBookOpen aria-hidden="true" />
           Bookshelf
         </NavLink>
 
         {/* Links */}
         <div className="flex items-center gap-2">
-          <NavLink to="/" end className={linkClass}>
+          <NavLink to="/" end className={(props) => `${linkClass(props)} flex items-center gap-2`}>
+            <FaHouse aria-hidden="true" />
             Home
           </NavLink>
 
-          <NavLink to="/books" className={linkClass}>
+          <NavLink to="/books" className={(props) => `${linkClass(props)} flex items-center gap-2`}>
+            <FaBook aria-hidden="true" />
             Books
           </NavLink>
 
-          <NavLink to="/authors" className={linkClass}>
+          <NavLink to="/authors" className={(props) => `${linkClass(props)} flex items-center gap-2`}>
+            <FaPenNib aria-hidden="true" />
             Authors
           </NavLink>
         </div>

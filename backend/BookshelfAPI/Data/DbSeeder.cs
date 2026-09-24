@@ -20,16 +20,16 @@ namespace Bookshelf.Data
 
             var authors = new List<Author>
             {
-                new() { Name = "George Orwell" },
-                new() { Name = "J.K. Rowling" },
-                new() { Name = "Stephen King" },
-                new() { Name = "Isaac Asimov" },
-                new() { Name = "Jane Austen" },
-                new() { Name = "Gabriel García Márquez" },
-                new() { Name = "Agatha Christie" },
-                new() { Name = "J.R.R. Tolkien" },
-                new() { Name = "Yuval Noah Harari" },
-                new() { Name = "Brandon Sanderson" }
+                new() { Name = "George Orwell", ImageUrl = "george_orwell.jpg" },
+                new() { Name = "J.K. Rowling", ImageUrl = "jk_rowling.jpg" },
+                new() { Name = "Stephen King", ImageUrl = "stephen_king.jpg" },
+                new() { Name = "Isaac Asimov", ImageUrl = "isaac_asimov.jpg" },
+                new() { Name = "Jane Austen", ImageUrl = "jane_austen.jpg" },
+                new() { Name = "Gabriel García Márquez", ImageUrl = "gabriel_garcia_marquez.jpg" },
+                new() { Name = "Agatha Christie", ImageUrl = "agatha_christie.jpg" },
+                new() { Name = "J.R.R. Tolkien", ImageUrl = "jrr_tolkien.jpg" },
+                new() { Name = "Yuval Noah Harari", ImageUrl = "yuval_noah_harari.jpg" },
+                new() { Name = "Brandon Sanderson", ImageUrl = "brandon_sanderson.jpg" }
             };
 
             var genres = new List<Genre>

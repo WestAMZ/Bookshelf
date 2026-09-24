@@ -20,11 +20,7 @@ export interface GenreDTO {
     name: string;
 }
 
-export interface BookDetailsDTO {
-    id: number;
-    title: string;
-    imageUrl?: string | null;
-    publishedDate: string;
+export interface BookDetailsDTO extends BookDTO {
     authors: AuthorDTO[];
     genres: GenreDTO[];
 }

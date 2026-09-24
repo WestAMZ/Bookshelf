@@ -1,7 +1,16 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import { Link } from 'react-router';
+import { AUTHORS_IMAGES_URL } from '../../const/global';
 import { getAllAuthors, getAuthorByName } from '../../services/AuthorsService';
 import type { AuthorDTO } from '../../types/AuthorsTypes';
+
+const getAuthorImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
+    return 'https://placehold.co/240x320?text=No+Image';
+  }
+
+  return `${AUTHORS_IMAGES_URL}${imagePath}`;
+};
 
 export const AuthorsPage = () => {
   const [authors, setAuthors] = useState<AuthorDTO[]>([]);
@@ -70,6 +79,11 @@ export const AuthorsPage = () => {
               to={`/authors/${author.id}`}
               className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
+              <img
+                src={getAuthorImageUrl(author.imageUrl)}
+                alt={author.name}
+                className="mb-4 h-56 w-full rounded-xl object-cover"
+              />
               <h2 className="text-lg font-semibold text-slate-900">{author.name}</h2>
               <p className="mt-3 text-sm text-cyan-600">View details →</p>
             </Link>

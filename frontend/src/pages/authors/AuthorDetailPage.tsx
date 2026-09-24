@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
+import { AUTHORS_IMAGES_URL } from '../../const/global';
 import { getAuthorById } from '../../services/AuthorsService';
 import type { AuthorDTOWithBooks } from '../../types/AuthorsTypes';
+
+const getAuthorImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
+    return 'https://placehold.co/240x320?text=No+Image';
+  }
+
+  return `${AUTHORS_IMAGES_URL}${imagePath}`;
+};
 
 export const AuthorDetailPage = () => {
   const { id } = useParams();
@@ -42,7 +51,14 @@ export const AuthorDetailPage = () => {
     <div className="mx-auto max-w-3xl px-6 py-8">
       <Link to="/authors" className="mb-6 inline-block text-sm font-medium text-cyan-600">← Back to authors</Link>
       <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-semibold text-slate-900">{author.name}</h1>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+          <img
+            src={getAuthorImageUrl(author.imageUrl)}
+            alt={author.name}
+            className="h-48 w-36 rounded-xl object-cover"
+          />
+          <h1 className="text-3xl font-semibold text-slate-900">{author.name}</h1>
+        </div>
 
         <div className="mt-6">
           <h2 className="text-lg font-semibold text-slate-900">Books</h2>

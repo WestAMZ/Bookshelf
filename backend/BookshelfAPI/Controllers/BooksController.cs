@@ -48,8 +48,9 @@ namespace Bookshelf.Controllers
         public async Task<ActionResult<List<BookDetailsDTO>>> Search(
             [FromQuery] string author, 
             [FromQuery] string title, 
-            [FromQuery] DateTime? publishedDate, 
-            [FromQuery] string genre)
+            [FromQuery] DateTime? startDate,
+            [FromQuery] DateTime? endDate,
+            [FromQuery] string genres)
         {
             var query = context.Books
                 .Include(bookDb => bookDb.AuthorBooks)
@@ -66,13 +67,21 @@ namespace Bookshelf.Controllers
             {
                 query = query.Where(b => b.Title.Contains(title));
             }
-            if (publishedDate.HasValue)
+            if (startDate.HasValue)
             {
-                query = query.Where(b => b.PublishedDate.HasValue && b.PublishedDate.Value.Date == publishedDate.Value.Date);
+                query = query.Where(b => b.PublishedDate.HasValue && b.PublishedDate.Value >= startDate.Value.Date);
             }
-            if (!string.IsNullOrWhiteSpace(genre))
+            if (endDate.HasValue)
             {
-                query = query.Where(b => b.BookGenres.Any(bg => bg.Genre.Name.Contains(genre)));
+                var endDateExclusive = endDate.Value.Date.AddDays(1);
+                query = query.Where(b => b.PublishedDate.HasValue && b.PublishedDate.Value < endDateExclusive);
+            }
+            if (!string.IsNullOrWhiteSpace(genres))
+            {
+                var selectedGenres = genres
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+                query = query.Where(b => b.BookGenres.Any(bg => selectedGenres.Contains(bg.Genre.Name)));
             }
 
             var books = await query.ToListAsync();
