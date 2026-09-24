@@ -1,5 +1,5 @@
-import { useEffect, useState, type FormEvent } from 'react';
-import { Link } from 'react-router';
+import { startTransition, useEffect, useState, type FormEvent } from 'react';
+import { Link, useSearchParams } from 'react-router';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { IMAGES_URL } from '../../const/global';
 import { searchBooks } from '../../services/BooksService';
@@ -17,6 +17,7 @@ const getBookImageUrl = (imagePath?: string | null) => {
 };
 
 export const BooksPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [books, setBooks] = useState<BookDetailsDTO[]>([]);
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -46,6 +47,20 @@ export const BooksPage = () => {
   };
 
   useEffect(() => {
+    const titleFromQuery = searchParams.get('title') ?? '';
+    const authorFromQuery = searchParams.get('author') ?? '';
+    const genresFromQuery = searchParams.get('genres')?.split(',').filter(Boolean) ?? [];
+    const startDateFromQuery = searchParams.get('startDate') ?? '';
+    const endDateFromQuery = searchParams.get('endDate') ?? '';
+
+    startTransition(() => {
+      setTitle(titleFromQuery);
+      setAuthor(authorFromQuery);
+      setSelectedGenres(genresFromQuery);
+      setStartDate(startDateFromQuery);
+      setEndDate(endDateFromQuery);
+    });
+
     const loadGenres = async () => {
       try {
         const availableGenres = await getGenres();
@@ -55,19 +70,29 @@ export const BooksPage = () => {
       }
     };
 
-    void loadBooks();
+    startTransition(() => {
+      void loadBooks({
+        title: titleFromQuery || undefined,
+        author: authorFromQuery || undefined,
+        genres: genresFromQuery.length ? genresFromQuery.join(',') : undefined,
+        startDate: startDateFromQuery || undefined,
+        endDate: endDateFromQuery || undefined
+      });
+    });
     void loadGenres();
-  }, []);
+  }, [searchParams]);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void loadBooks({
-      title: title || undefined,
-      author: author || undefined,
-      genres: selectedGenres.length ? selectedGenres.join(',') : undefined,
-      startDate: startDate || undefined,
-      endDate: endDate || undefined
-    });
+    const queryParams: Record<string, string> = {};
+
+    if (title) queryParams.title = title;
+    if (author) queryParams.author = author;
+    if (selectedGenres.length) queryParams.genres = selectedGenres.join(',');
+    if (startDate) queryParams.startDate = startDate;
+    if (endDate) queryParams.endDate = endDate;
+
+    setSearchParams(queryParams);
   };
 
   return (
