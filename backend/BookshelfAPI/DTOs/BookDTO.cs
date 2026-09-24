@@ -6,5 +6,6 @@
         public string Title { get; set; }
         public string ImageUrl { get; set; }
         public DateTime PublishedDate { get; set; }
+        public string Synopsis { get; set; }
     }
 }

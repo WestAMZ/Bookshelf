@@ -12,6 +12,7 @@ export interface BookDTO {
     title: string;
     imageUrl?: string | null;
     publishedDate: string;
+    synopsis?: string | null;
 }
 
 export interface GenreDTO {

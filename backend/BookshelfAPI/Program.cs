@@ -1,4 +1,5 @@
 using Bookshelf;
+using Bookshelf.Data;
 using Bookshelf.Filters;
 using Bookshelf.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -90,6 +91,13 @@ builder.Services.AddAuthorization(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await context.Database.MigrateAsync();
+    await DbSeeder.SeedAsync(scope.ServiceProvider);
+}
 
 app.UseStaticFiles();
 

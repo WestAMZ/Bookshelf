@@ -8,7 +8,7 @@ import { formatDate } from '../../utils/date';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
-    return 'https://via.placeholder.com/240x320?text=No+Image';
+    return 'https://placehold.co/240x320?text=No+Image';
   }
 
   return `${IMAGES_URL}${imagePath}`;
@@ -89,18 +89,39 @@ export const BooksPage = () => {
             placeholder="Author"
             className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-500"
           />
-          <select
-            value={genre}
-            onChange={(event) => setGenre(event.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-500"
-          >
-            <option value="">All genres</option>
-            {genres.map((availableGenre) => (
-              <option key={availableGenre} value={availableGenre}>
-                {availableGenre}
-              </option>
-            ))}
-          </select>
+          <div className="flex flex-wrap items-center gap-2 md:col-span-2 xl:col-span-2" role="group" aria-label="Filter by genre">
+            <button
+              type="button"
+              aria-pressed={!genre}
+              onClick={() => setGenre('')}
+              className={`rounded-full border px-3 py-2 text-sm font-medium transition ${
+                !genre
+                  ? 'border-cyan-600 bg-cyan-600 text-white'
+                  : 'border-slate-300 bg-white text-slate-700 hover:border-cyan-500 hover:text-cyan-700'
+              }`}
+            >
+              All genres
+            </button>
+            {genres.map((availableGenre) => {
+              const isSelected = genre === availableGenre;
+
+              return (
+                <button
+                  key={availableGenre}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setGenre(isSelected ? '' : availableGenre)}
+                  className={`rounded-full border px-3 py-2 text-sm font-medium transition ${
+                    isSelected
+                      ? 'border-cyan-600 bg-cyan-600 text-white'
+                      : 'border-slate-300 bg-white text-slate-700 hover:border-cyan-500 hover:text-cyan-700'
+                  }`}
+                >
+                  {availableGenre}
+                </button>
+              );
+            })}
+          </div>
           <input
             type="date"
             value={publishedDate}

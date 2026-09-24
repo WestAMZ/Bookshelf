@@ -11,6 +11,8 @@ namespace Bookshelf.DTOs
         public string Title { get; set; }
         public DateTime PublishedDate { get; set; }
         public string ImageUrl { get; set; }
+        [StringLength(maximumLength: 5000)]
+        public string Synopsis { get; set; }
         public List<int> AuthorIds { get; set; }
     }
 }

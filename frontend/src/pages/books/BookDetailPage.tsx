@@ -72,6 +72,11 @@ export const BookDetailPage = () => {
         </div>
 
         <div className="mt-6">
+          <h2 className="text-lg font-semibold text-slate-900">Synopsis</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-700">{book.synopsis?.trim() || 'No synopsis available.'}</p>
+        </div>
+
+        <div className="mt-6">
           <h2 className="text-lg font-semibold text-slate-900">Authors</h2>
           {book.authors?.length ? (
             <ul className="mt-3 space-y-2">
