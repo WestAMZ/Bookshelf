@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { IMAGES_URL } from '../../const/global';
+import { AUTHORS_IMAGES_URL, IMAGES_URL } from '../../const/global';
 import { getBookById } from '../../services/BooksService';
 import type { BookDetailsDTO } from '../../types/BooksTypes';
 import { formatDate } from '../../utils/date';
-import { BOOK_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
+import { AUTHOR_PLACEHOLDER_IMAGE, BOOK_PLACEHOLDER_IMAGE, handleImageError } from '../../utils/image';
 
 const getBookImageUrl = (imagePath?: string | null) => {
   if (!imagePath) {
@@ -12,6 +12,14 @@ const getBookImageUrl = (imagePath?: string | null) => {
   }
 
   return `${IMAGES_URL}${imagePath}`;
+};
+
+const getAuthorImageUrl = (imagePath?: string | null) => {
+  if (!imagePath) {
+    return AUTHOR_PLACEHOLDER_IMAGE;
+  }
+
+  return `${AUTHORS_IMAGES_URL}${imagePath}`;
 };
 
 export const BookDetailPage = () => {
@@ -84,7 +92,18 @@ export const BookDetailPage = () => {
             <ul className="mt-3 space-y-2">
               {book.authors.map((author) => (
                 <li key={author.id} className="rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-700">
-                  {author.name}
+                  <Link
+                    to={`/authors/${author.id}`}
+                    className="flex items-center gap-3 transition hover:text-cyan-700"
+                  >
+                    <img
+                      src={getAuthorImageUrl(author.imageUrl)}
+                      alt={author.name}
+                      onError={(event) => handleImageError(event, AUTHOR_PLACEHOLDER_IMAGE)}
+                      className="h-12 w-10 shrink-0 rounded object-cover"
+                    />
+                    <span>{author.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>

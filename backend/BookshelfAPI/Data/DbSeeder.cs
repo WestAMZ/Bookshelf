@@ -60,13 +60,11 @@ namespace Bookshelf.Data
 
             var books = new List<Book>
             {
-                // 1-20: Original books
                 new()
                 {
                     Title = "1984",
                     PublishedDate = new DateTime(1949, 6, 8),
                     ImageUrl = "1984.jpg",
-                    Synopsis = "In the superstate of Oceania, Winston Smith works at the Ministry of Truth, where he rewrites historical records to match the Party's current version of reality. Increasingly alienated by a society controlled by surveillance, propaganda, and fear, Winston begins questioning the Party and secretly pursues a forbidden relationship with Julia. His search for truth brings him into conflict with the Party's mechanisms of power and exposes the consequences of rebellion against an authoritarian regime."
                 },
                 new()
                 {
@@ -100,14 +98,14 @@ namespace Bookshelf.Data
                 {
                     Title = "It",
                     PublishedDate = new DateTime(1986, 9, 15),
-                    ImageUrl = "it.jpg",
+                    ImageUrl = "It.jpg",
                     Synopsis = "Seven-year-old Georgie Denbrough disappears in the town of Derry, Maine, and his disappearance becomes connected to a terrifying presence that returns periodically to prey on children. Years later, a group of childhood friends known as the Losers' Club confronts the entity and later reunites as adults when the threat returns. Their struggle forces them to face both the supernatural evil in Derry and the fears and memories that have followed them into adulthood."
                 },
                 new()
                 {
                     Title = "Foundation",
                     PublishedDate = new DateTime(1951, 6, 1),
-                    ImageUrl = "foundation.jpg",
+                    ImageUrl = "Foundation.jpg",
                     Synopsis = "In a distant future, mathematician Hari Seldon develops psychohistory, a science that uses mathematics to predict the broad movements of human societies. His calculations indicate that the Galactic Empire is approaching a long period of decline and chaos. Seldon establishes the Foundation on the remote planet Terminus to preserve human knowledge and shorten the coming dark age, while political pressures and rival powers challenge the new society."
                 },
                 new()
@@ -128,7 +126,7 @@ namespace Bookshelf.Data
                 {
                     Title = "Emma",
                     PublishedDate = new DateTime(1815, 12, 23),
-                    ImageUrl = "emma.jpg",
+                    ImageUrl = "Emma.jpg",
                     Synopsis = "Emma Woodhouse is a wealthy young woman who enjoys arranging marriages among people around her, despite having no intention of marrying herself. She becomes convinced that her judgment is superior and attempts to guide the romantic lives of her friends, particularly Harriet Smith. Her plans repeatedly lead to misunderstandings, and Emma must gradually recognize her own mistakes and reconsider her feelings and relationships."
                 },
                 new()
@@ -177,7 +175,7 @@ namespace Bookshelf.Data
                 {
                     Title = "Sapiens",
                     PublishedDate = new DateTime(2011, 1, 1),
-                    ImageUrl = "sapiens.jpg",
+                    ImageUrl = "Sapiens.jpg",
                     Synopsis = "Sapiens traces the history of Homo sapiens from the emergence of early humans through the Agricultural and Scientific Revolutions and into the modern era. Harari examines how shared myths, institutions, economic systems, and technologies allowed large numbers of humans to cooperate. The book connects major transformations in human society with changes in culture, politics, economics, and the environment."
                 },
                 new()
@@ -214,28 +212,28 @@ namespace Bookshelf.Data
                 {
                     Title = "Brave New World",
                     PublishedDate = new DateTime(1932, 1, 1),
-                    ImageUrl = "brave-new-world.jpg",
+                    ImageUrl = "brave_new_world.jpg",
                     Synopsis = "In a technologically advanced future society, humans are genetically conditioned into predetermined social classes and kept content through consumerism, entertainment, and a drug called soma. Bernard Marx and Lenina Crowne encounter John, a young man raised outside the World State, whose values challenge the society's assumptions. Their experiences raise questions about freedom, individuality, happiness, and social control."
                 },
                 new()
                 {
                     Title = "Fahrenheit 451",
                     PublishedDate = new DateTime(1953, 10, 19),
-                    ImageUrl = "fahrenheit-451.jpg",
+                    ImageUrl = "fahrenheit_451.jpg",
                     Synopsis = "Guy Montag works as a fireman in a society where books are forbidden and firemen burn them rather than extinguishing fires. After meeting his curious young neighbor Clarisse, Montag begins questioning the society he serves. His growing interest in books brings him into conflict with his employer and forces him to consider the value of knowledge, independent thought, and human connection."
                 },
                 new()
                 {
                     Title = "The Great Gatsby",
                     PublishedDate = new DateTime(1925, 4, 10),
-                    ImageUrl = "the-great-gatsby.jpg",
+                    ImageUrl = "the_great_gatsby.jpg",
                     Synopsis = "Nick Carraway moves to Long Island and becomes acquainted with his mysterious and wealthy neighbor Jay Gatsby. Gatsby hosts extravagant parties while secretly hoping to rekindle his relationship with Daisy Buchanan, who is now married to Tom Buchanan. Set during the Jazz Age, the novel examines wealth, ambition, social class, love, memory, and the limits of the American Dream."
                 },
                 new()
                 {
                     Title = "War and Peace",
                     PublishedDate = new DateTime(1869, 1, 1),
-                    ImageUrl = "war-and-peace.jpg",
+                    ImageUrl = "war_and_peace.jpg",
                     Synopsis = "Set during the Napoleonic Wars, War and Peace follows several Russian aristocratic families as their lives are transformed by war, political upheaval, marriage, and personal loss. Characters including Pierre Bezukhov, Prince Andrei Bolkonsky, and Natasha Rostova experience changing relationships and beliefs while confronting the consequences of historical events. The novel combines intimate personal stories with a broad examination of history and society."
                 },
                 new()
@@ -270,7 +268,7 @@ namespace Bookshelf.Data
                 {
                     Title = "American Gods",
                     PublishedDate = new DateTime(2001, 6, 18),
-                    ImageUrl = "american-gods.jpg",
+                    ImageUrl = "american_gods.jpg",
                     Synopsis = "Shadow Moon is released from prison shortly before his wife dies and accepts a mysterious job from a man named Mr. Wednesday. As Shadow travels across the United States with his employer, he discovers that ancient gods brought to America by immigrants are preparing for a conflict with newer deities representing modern technology and culture. The journey combines mythology, mystery, fantasy, and an exploration of belief."
                 },
                 new()
@@ -284,7 +282,7 @@ namespace Bookshelf.Data
                 {
                     Title = "The Divine Comedy",
                     PublishedDate = new DateTime(1320, 1, 1),
-                    ImageUrl = "the-divine-comedy.jpg",
+                    ImageUrl = "the_divine_comedy.jpg",
                     Synopsis = "Dante undertakes an allegorical journey through Hell, Purgatory, and Paradise. Guided first by the Roman poet Virgil and later by Beatrice, he encounters historical, mythological, and theological figures while reflecting on sin, justice, redemption, faith, and divine order. The poem presents a vast medieval vision of the afterlife while exploring the individual's spiritual and moral transformation."
                 },
                 new()
@@ -305,7 +303,7 @@ namespace Bookshelf.Data
                 {
                     Title = "The Count of Monte Cristo",
                     PublishedDate = new DateTime(1844, 8, 28),
-                    ImageUrl = "the-count-of-monte-cristo.jpg",
+                    ImageUrl = "the-count-of-monte_cristo.jpg",
                     Synopsis = "Edmond Dantès is falsely imprisoned shortly before his wedding because of a political conspiracy involving people who envy him. After years in prison, he escapes with the help of a fellow prisoner and discovers a hidden fortune. Taking a new identity and extraordinary wealth, Edmond sets out to reward those who helped him and confront those responsible for his imprisonment."
                 },
                 new()
